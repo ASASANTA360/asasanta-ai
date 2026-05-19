@@ -1,0 +1,51 @@
+"use client";
+
+import { useState } from "react";
+
+export default function Home() {
+  const [message, setMessage] = useState("");
+  const [reply, setReply] = useState("");
+
+  const handleSend = () => {
+    if (!message) return;
+
+    if (message.toLowerCase().includes("hi")) {
+      setReply("Hello 👋 Welcome to ASASANTA AI SUPPORT AGENT.");
+    } else if (message.toLowerCase().includes("kyc")) {
+      setReply("We provide professional KYC services.");
+    } else {
+      setReply("Thank you for contacting ASASANTA AI SUPPORT AGENT.");
+    }
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-black p-6 text-white">
+      <h1 className="mb-6 text-4xl font-bold text-green-500">
+        ASASANTA AI SUPPORT AGENT
+      </h1>
+
+      <div className="w-full max-w-xl rounded-2xl bg-gray-900 p-6">
+        <input
+          type="text"
+          placeholder="Type your message..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className="w-full rounded-xl bg-black p-4 outline-none"
+        />
+
+        <button
+          onClick={handleSend}
+          className="mt-4 w-full rounded-xl bg-green-600 p-4 font-bold"
+        >
+          Send
+        </button>
+
+        {reply && (
+          <div className="mt-6 rounded-xl bg-gray-800 p-4">
+            {reply}
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
